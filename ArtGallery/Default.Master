@@ -1,0 +1,179 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="ArtGallery.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Le Louvre Gallery | Buy Art Online | Original Art for Sale
+    </title>
+    <link rel="shortcut icon" href="~/Images/favicon.png" type="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .mainmenu {
+            background-color: transparent;
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            padding: 10px;
+            margin-left: 35px;
+        }
+
+        .submenu {
+            background-color: transparent;
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .mainmenu:hover, .submenu:hover {
+            color: var(--main-color);
+        }
+
+        .inline-wishlist {
+            padding: 2px 5px;
+            border-radius: 50%;
+            font-weight: 800;
+            color: black;
+            background: var(--main-color);
+            position: absolute;
+            top: 26px;
+            right: 284px;
+        }
+
+        .inline-cart {
+            padding: 2px 5px;
+            border-radius: 50%;
+            font-weight: 800;
+            color: black;
+            background: var(--main-color);
+            position: absolute;
+            top: 26px;
+            right: 245px;
+        }
+
+        .btn-nav {
+            width: 111px;
+            display: inline-block;
+            padding: .8rem 3rem;
+            font-size: 1.7rem;
+            border-radius: .5rem;
+            background: #666;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-nav:hover {
+            background: var(--main-color);
+        }
+        .to-top {
+            background-color: sandybrown;
+            position: fixed;
+            bottom: 16px;
+            right: 32px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: all .4s;    
+        }
+        .to-top.active {
+            bottom: 32px;
+            pointer-events: auto;
+            opacity: 1;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header class="header">
+            <a href="Default.aspx" class="logo" style="text-decoration:none"><span>Le</span> Lourve</a>
+
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+            <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1"
+                Orientation="Horizontal" DynamicMenuItemStyle-Font-Bold="true"
+                StaticSubMenuIndent="10px" OnMenuItemDataBound="Menu1_MenuItemDataBound">
+                <LevelMenuItemStyles>
+                    <asp:MenuItemStyle CssClass="mainmenu" />
+                    <asp:MenuItemStyle CssClass="submenu" />
+                </LevelMenuItemStyles>
+            </asp:Menu>
+
+            <div class="nav-area">
+                <a href="UserInfo.aspx"><i class="fas fa-user fa-2x"></i></a>
+                <a href="Wishlist.aspx"><i class="far fa-heart fa-2x"></i></a>
+                <asp:Label ID="lblWishlistCount" runat="server" Text="0" CssClass="inline-wishlist"></asp:Label>
+                <a href="Cart.aspx"><i class="fas fa-shopping-bag fa-2x"></i></a>
+                <asp:Label ID="lblCartCount" runat="server" Text="0" CssClass="inline-cart"></asp:Label>
+                <asp:Button ID="btnLogin" CssClass="btn-nav" runat="server" Text="Login" OnClick="btnLogin_Click" CausesValidation="false" UseSubmitBehavior="false" />
+                <asp:Button ID="btnLogout" CssClass="btn-nav"  runat="server" Text="Logout" OnClick="btnLogout_Click" CausesValidation="false" UseSubmitBehavior="false" />
+            </div>
+        </header>
+
+        <asp:Panel ID="pnlSliderUC" runat="server"></asp:Panel>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <a href="#" class="to-top">
+            <img src="Images/chevron-up-icon.png" width="28" height="28" alt="Chevron up icon">
+        </a>
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3><b>Quick Links</b></h3>
+                    <a href="Default.aspx"><i class="fas fa-arrow-right"></i>Home </a>
+                    <a href="Gallery.aspx"><i class="fas fa-arrow-right"></i>Artworks </a>
+                    <a href="Artists.aspx"><i class="fas fa-arrow-right"></i>Artist </a>
+                </div>
+                <div class="box">
+                    <h3><b>Contact Us</b></h3>
+                    <a href="#"><i class="fas fa-phone"></i>603-6165095 </a>
+                    <a href="#"><i class="fas fa-envelope"></i>lelourve@gmail.com </a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i>26 Jalan Satu, Selayang </a>
+                </div>
+                <div class="box">
+                    <h3><b>Follow Us</b></h3>
+                    <a href="#"><i class="fab fa-facebook-f"></i>Facebook </a>
+                    <a href="#"><i class="fab fa-twitter"></i>Twitter </a>
+                    <a href="#"><i class="fab fa-instagram"></i>Instagram </a>
+                </div>
+                <div class="box">
+                    <h3><b>Opening Hours</b></h3>
+                    <p>&nbsp; Everyday</p>
+                    <p>&nbsp; 10.00 AM - 10.00 PM</p>
+                </div>
+            </div>
+            <div class="credit">&copy; &nbsp;2022 Le Lourve All Rights Reserved</div>
+        </section>
+    </form>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        const toTop = document.querySelector(".to-top");
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                toTop.classList.add("active");
+            } else {
+                toTop.classList.remove("active");
+            }
+        })
+    </script>
+</body>
+</html>
