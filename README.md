@@ -7,6 +7,5 @@
 5. If you are facing some text or column not displaying well enough, please set your browser's viewing resolution to around 1544 X 725 for the best viewing experience.
 6. Customer Username	:vivian01 		Password	:vivian01 
 7. Artist Username	:kyle01			ArtistPassword	:kyle0001		
-8. Otherwise, kindly approach us through guihc-wp19@student.tarc.edu.my shall you need clarifications.
 
 Thank you and have a nice day!
